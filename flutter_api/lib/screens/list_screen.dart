@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/model/produk_model.dart';
+import 'package:flutter_api/models/produk_model.dart';
+import 'package:flutter_api/screens/add_screen.dart';
 import 'package:flutter_api/service/produk_service.dart';
 
-class HomeScreen extends StatefulWidget {
+class ListScreen extends StatefulWidget {
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ListScreen> createState() => _ListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ListScreenState extends State<ListScreen> {
   List<Produk> listProduk = [];
   ProdukService produkService = ProdukService();
 
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("Tugas API"),
       ),
       body: SafeArea(
@@ -63,6 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Divider();
               },
               itemCount: listProduk.length),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddScreen()),
+          );
+        },
+        child: Text(
+          "+",
+          style: TextStyle(fontSize: 25),
         ),
       ),
     );

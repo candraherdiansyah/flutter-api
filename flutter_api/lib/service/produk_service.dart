@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../model/produk_model.dart';
+import '../models/produk_model.dart';
 import 'package:http/http.dart' as http;
 
 class ProdukService {
@@ -12,8 +12,8 @@ class ProdukService {
 
       if (response.statusCode == 200) {
         Iterable it = jsonDecode(response.body);
-        List<Produk> album = it.map((e) => Produk.fromJson(e)).toList();
-        return album;
+        List<Produk> produk = it.map((e) => Produk.fromJson(e)).toList();
+        return produk;
       }
     } catch (e) {
       print(e.toString());
